@@ -4,9 +4,8 @@ import { NgForm } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ModalController } from '@ionic/angular';
-import { ModalRegister } from './modalRegister.page'
-
 import { AuthService, AuthResponseData } from './auth.service';
+import { RegisterCodeService } from './register-code.service';
 
 @Component({
   selector: 'app-auth',
@@ -23,12 +22,19 @@ export class AuthPage implements OnInit {
     private router: Router,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private codeCtrl: RegisterCodeService
   ) { }
 
   ngOnInit() { }
 
-  authenticate(email: string, password: string) {
+  authenticate(email: string, password: string, code: string) {
+    if (!this.isLogin) {
+      if (code != this.codeCtrl.createKey(email)) {
+        this.showAlert('wrong code');
+        return;
+      }
+    }
     this.isLoading = true;
     this.loadingCtrl
       .create({ keyboardClose: true, message: 'Logging in...' })
@@ -74,8 +80,13 @@ export class AuthPage implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
+    let code = '';
+    if (!this.isLogin) {
+      code = form.value.code
+    }
 
-    this.authenticate(email, password);
+
+    this.authenticate(email, password, code);
     form.reset();
   }
 
@@ -89,10 +100,7 @@ export class AuthPage implements OnInit {
       .then(alertEl => alertEl.present());
   }
   async presentModal() {
-    this.modal = await this.modalController.create({
-      component: ModalRegister,
-      cssClass: 'my-custom-class'
-    });
-    return await this.modal.present();
+    this.router.navigateByUrl('/get-code');
+
   }
 }

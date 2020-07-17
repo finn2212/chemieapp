@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'calculate',
     loadChildren: () => import('./calculations/calculate/calculate.module').then(m => m.CalculatePageModule),
     canLoad: [AuthGuard]
+  },
+  {
+    path: 'get-code',
+    loadChildren: () => import('./auth/getCode/get-code/get-code.module').then( m => m.GetCodePageModule)
   }
 ];
 
