@@ -5,8 +5,38 @@ import { CalculatePage } from './calculate.page';
 
 const routes: Routes = [
   {
+    path: 'tabs',
+    component: CalculatePage,
+    children: [
+      {
+        path: 'enter-values',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./enter-values/enter-values.module').then(m => m.EnterValuesPageModule)
+          }
+        ]
+      },
+      {
+        path: 'summary',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./summary/summary.module').then(m => m.SummaryPageModule)
+          }
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/calculate/tabs/enter-values',
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
     path: '',
-    component: CalculatePage
+    redirectTo: '/calculate/tabs/enter-values',
+    pathMatch: 'full'
   }
 ];
 
@@ -14,4 +44,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CalculatePageRoutingModule {}
+export class CalculatePageRoutingModule { }

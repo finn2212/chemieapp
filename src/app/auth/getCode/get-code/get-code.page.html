@@ -4,7 +4,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-grid>
@@ -16,13 +15,28 @@
               <ion-input type="string" ngModel name="email" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">inhalt</ion-label>
-              <ion-input type="string" ngModel name="inhalt" required>
+              <ion-label position="floating">Name</ion-label>
+              <ion-input type="string" ngModel name="name" required>
               </ion-input>
             </ion-item>
             <ion-item>
-              <ion-label position="floating">Firma</ion-label>
-              <ion-input type="string" ngModel name="firma" required>
+              <ion-label position="floating">Company</ion-label>
+              <ion-input type="string" ngModel name="company" required>
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">country</ion-label>
+              <ion-input type="string" ngModel name="country" required>
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">adress</ion-label>
+              <ion-input type="string" ngModel name="adress" required>
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">telephone</ion-label>
+              <ion-input type="number" ngModel name="telephone" required>
               </ion-input>
             </ion-item>
           </ion-list>
