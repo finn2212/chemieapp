@@ -9,7 +9,7 @@ export class UserService {
 
   constructor(private db: AngularFirestore) { }
 
-  createUserInfo(email: string, name: string, company: string, country: string, adress: string, telephone: number) {
+  createUserInfo(email: string, name: string, company: string, country: string, adress: string, telephone: number, contactPerson: string, artOfWorking: string) {
     const data = {
       email: email,
       name: name,
@@ -17,6 +17,8 @@ export class UserService {
       country: country,
       adress: adress,
       telephone: telephone,
+      contactPerson: contactPerson,
+      artOfWorking: artOfWorking
     }
     this.storeUserInfo(data);
     return data;

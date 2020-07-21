@@ -26,7 +26,7 @@
             </ion-item>
             <ion-item *ngIf="!isLogin">
               <ion-label *ngIf="!isLogin" position="floating">Einladungs Code</ion-label>
-              <ion-input *ngIf="!isLogin" required ngModel name="code" type="string">
+              <ion-input required ngModel name="code" type="string">
               </ion-input>
             </ion-item>
             <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none">
@@ -39,17 +39,21 @@
       </ion-row>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
-          <ion-button type="button" color="primary" fill="clear" expand="block" (click)="onSwitchAuthMode()">
-            Switch to {{ isLogin ? 'Signup' : 'Login' }}
-          </ion-button>
           <ion-button type="submit" color="primary" expand="block" [disabled]="!f.valid">
-            {{ isLogin ? 'Login' : 'Signup' }}
+            {{ isLogin ? 'Login' : 'Signup Abschließen' }}
           </ion-button>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="!isLogin">
+      <ion-row *ngIf="isLogin">
         <ion-col size-sm="6" offset-sm="3">
-          <ion-button (click)='presentModal()'>Ask for code</ion-button>
+          <ion-button color="dark" expand="block" (click)='presentModal()'>Signup</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-button type="button" color="primary" fill="clear" expand="block" (click)="onSwitchAuthMode()">
+            {{ isLogin ? 'Signup Abschließen' : 'Go to Login' }}
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
