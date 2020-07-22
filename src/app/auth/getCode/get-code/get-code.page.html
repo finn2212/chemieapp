@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>getCode</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="Back to Login" [icon]="buttonIcon">
+      </ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -47,34 +50,30 @@
             </ion-item>
             <ion-item>
               <ion-label position="floating">Art der Maschinellen Umsetzung</ion-label>
-              <ion-input type="string" ngModel name="artOfWorking" required>
-              </ion-input>
+              <ion-select placeholder="Maschienen Auswahl" ngModel name="artOfWorking" required>
+                <ion-select-option>Art 1</ion-select-option>
+                <ion-select-option>Art 2</ion-select-option>
+                <ion-select-option>Art 3</ion-select-option>
+              </ion-select>
             </ion-item>
-            <ion-row class="ion-padding-top">
-              <ion-col offset-sm="3">
-                <ion-label position="floating">Hiermit Akzeptiere ich die AGBs</ion-label>
-              </ion-col>
-              <ion-col offset-sm="3">
-                <ion-checkbox ngModel name="abgsCheck" [(ngModel)]="agbs" required></ion-checkbox>
-              </ion-col>
-              <ion-col offset-sm="3">
-                <ion-button (click)="presentModal()">Show AGBS</ion-button>
-              </ion-col>
-            </ion-row>
           </ion-list>
+          <ion-row class="ion-padding-top">
+            <ion-col size="5">
+              <ion-label position="floating">Hiermit Akzeptiere ich die AGBs</ion-label>
+            </ion-col>
+            <ion-col size="2" class="ion-padding-top">
+              <ion-checkbox ngModel name="abgsCheck" [(ngModel)]="agbs" required></ion-checkbox>
+            </ion-col>
+            <ion-col size="3">
+              <ion-button (click)="presentModal()">Show AGBS</ion-button>
+            </ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
           <ion-button type="submit" color="primary" expand="block" [disabled]="!f.valid">
             GetCode
-          </ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size-sm="6" offset-sm="3">
-          <ion-button color="primary" expand="block" (click)="returnToAuth()">
-            Return to Login
           </ion-button>
         </ion-col>
       </ion-row>

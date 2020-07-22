@@ -11,6 +11,14 @@ export default class CountriesData {
     {
       id: 3,
       name: 'Portugal'
+    },
+    {
+      id: 3,
+      name: 'Polen'
+    },
+    {
+      id: 3,
+      name: 'Östereich'
     }
   ];
 

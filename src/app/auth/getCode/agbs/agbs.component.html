@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="dark" (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>AGBs</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   hier stehen die AGBs
 </ion-content>
-<ion-button (click)="dismiss()">Close</ion-button>

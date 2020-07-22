@@ -26,14 +26,11 @@ export class GetCodePage implements OnInit {
   ) {
     this.countries = new CountriesData().getcountriesData();
   }
-
+  ngOnInit() {
+  }
   agbs: boolean;
   countries;
 
-
-
-  ngOnInit() {
-  }
   onSubmit(form: NgForm) {
     if (!this.agbs) {
       this.showAlert("akzeptiere AGBs")

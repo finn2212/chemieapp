@@ -3,11 +3,41 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>User Info</ion-title>
+    <ion-title>Profil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content>
 
+
+<ion-content padding>
+  <ion-card *ngFor="let user of users | async">
+    <ion-card-header>
+      Persöhnliche Informationen
+    </ion-card-header>
+    <ion-card-content>
+      {{user.name}}
+    </ion-card-content>
+    <ion-card-content>
+      {{user.email}}
+    </ion-card-content>
+    <ion-card-content>
+      {{user.company}}
+    </ion-card-content>
+    <ion-card-content>
+      {{user.country}}
+    </ion-card-content>
+    <ion-card-content>
+      {{user.adress}}
+    </ion-card-content>
+    <ion-card-content>
+      {{user.telephone}}
+    </ion-card-content>
+    <ion-card-content>
+      {{user.contactPerson}}
+    </ion-card-content>
+    <ion-card-content>
+      {{user.artOfWorking}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

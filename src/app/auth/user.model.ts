@@ -4,7 +4,7 @@ export class User {
     public email: string,
     private _token: string,
     private tokenExpirationDate: Date
-  ) {}
+  ) { }
 
   get token() {
     if (!this.tokenExpirationDate || this.tokenExpirationDate <= new Date()) {
@@ -12,6 +12,7 @@ export class User {
     }
     return this._token;
   }
+
 
   get tokenDuration() {
     if (!this.token) {

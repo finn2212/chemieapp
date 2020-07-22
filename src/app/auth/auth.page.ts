@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { AuthService, AuthResponseData } from './auth.service';
 import { RegisterCodeService } from './register-code.service';
 
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.page.html',
@@ -23,7 +24,8 @@ export class AuthPage implements OnInit {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     public modalController: ModalController,
-    private codeCtrl: RegisterCodeService
+    private codeCtrl: RegisterCodeService,
+
   ) { }
 
   ngOnInit() { }

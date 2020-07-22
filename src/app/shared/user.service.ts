@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class UserService {
 
   constructor(private db: AngularFirestore) { }
+  currentMail: string;
 
   createUserInfo(email: string, name: string, company: string, country: string, adress: string, telephone: number, contactPerson: string, artOfWorking: string) {
     const data = {
@@ -27,13 +28,23 @@ export class UserService {
   private storeUserInfo(data) {
     return new Promise<any>((resolve, reject) => {
       this.db
-        .collection("user")
+        .collection(data.email)
         .add(data)
         .then(res => { }, err => reject(err));
     });
   }
-  getUsers() {
-    return this.db.collection("user").snapshotChanges();
+
+  getUserInformation(): AngularFirestoreCollection<any> {
+    return this.db.collection(this.getcurrentMail());
   }
+
+  setcurrentMail(email: string) {
+    this.currentMail = email;
+  }
+
+  getcurrentMail() {
+    return this.currentMail;;
+  }
+
 
 }

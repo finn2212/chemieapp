@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, from } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Plugins } from '@capacitor/core';
-
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
+import { UserService } from '../shared/user.service'
+
 
 export interface AuthResponseData {
   kind: string;
@@ -21,6 +22,8 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService implements OnDestroy {
+
+
   private _user = new BehaviorSubject<User>(null);
   private activeLogoutTimer: any;
 
@@ -36,7 +39,7 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  get userId() {
+  public get userId() {
     return this._user.asObservable().pipe(
       map(user => {
         if (user) {
@@ -60,7 +63,7 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   autoLogin() {
     return from(Plugins.Storage.get({ key: 'authData' })).pipe(
@@ -84,6 +87,7 @@ export class AuthService implements OnDestroy {
           parsedData.token,
           expirationTime
         );
+        this.userService.setcurrentMail(user.email);
         return user;
       }),
       tap(user => {
@@ -99,10 +103,11 @@ export class AuthService implements OnDestroy {
   }
 
   signup(email: string, password: string) {
+    this.userService.setcurrentMail(email);
     return this.http
       .post<AuthResponseData>(
         `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${
-          environment.firebaseAPIKey
+        environment.firebaseAPIKey
         }`,
         { email: email, password: password, returnSecureToken: true }
       )
@@ -110,10 +115,11 @@ export class AuthService implements OnDestroy {
   }
 
   login(email: string, password: string) {
+    this.userService.setcurrentMail(email);
     return this.http
       .post<AuthResponseData>(
         `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${
-          environment.firebaseAPIKey
+        environment.firebaseAPIKey
         }`,
         { email: email, password: password, returnSecureToken: true }
       )
