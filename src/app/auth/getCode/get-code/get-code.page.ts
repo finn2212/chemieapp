@@ -10,6 +10,7 @@ import CountriesData from '../../../resources/countries/countries';
 
 
 
+
 @Component({
   selector: 'app-get-code',
   templateUrl: './get-code.page.html',
@@ -22,7 +23,7 @@ export class GetCodePage implements OnInit {
     private registerCodeService: RegisterCodeService,
     private userService: UserService,
     private modalController: ModalController,
-    private alertCtrl: AlertController,
+    private alertCtrl: AlertController
   ) {
     this.countries = new CountriesData().getcountriesData();
   }

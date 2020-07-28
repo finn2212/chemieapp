@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Storage } from '@ionic/storage';
+import { UserData } from '../models/userData'
 
 
 @Injectable({
@@ -7,7 +9,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 })
 export class UserService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore,
+    private localDb: Storage) { }
+  userData: UserData;
   currentMail: string;
 
   createUserInfo(email: string, name: string, company: string, country: string, adress: string, telephone: number, contactPerson: string, artOfWorking: string) {
@@ -21,10 +25,16 @@ export class UserService {
       contactPerson: contactPerson,
       artOfWorking: artOfWorking
     }
+    let userData = new UserData(email, name, company, country, adress, telephone, contactPerson, artOfWorking);
     this.storeUserInfo(data);
+    this.storeUserInfoLocal(userData);
     return data;
   }
 
+  private storeUserInfoLocal(userData) {
+    this.localDb.set('userdata', userData);
+
+  }
   private storeUserInfo(data) {
     return new Promise<any>((resolve, reject) => {
       this.db
@@ -37,13 +47,26 @@ export class UserService {
   getUserInformation(): AngularFirestoreCollection<any> {
     return this.db.collection(this.getcurrentMail());
   }
+  private getUserInformationLocal() {
+    return this.localDb.get('userdata')
+  }
+
+  private getUserInfosFromLocalDB() {
+    this.getUserInformationLocal().then((result) => {
+      this.userData = result;
+    });
+  }
 
   setcurrentMail(email: string) {
+    this.getUserInfosFromLocalDB()
     this.currentMail = email;
   }
 
   getcurrentMail() {
-    return this.currentMail;;
+    return this.currentMail;
+  }
+  getUserData() {
+    return this.userData;
   }
 
 

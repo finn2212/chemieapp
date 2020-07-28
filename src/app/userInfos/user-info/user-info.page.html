@@ -8,36 +8,71 @@
 </ion-header>
 
 
+<ion-item>
+  <ion-label>Bearbeiten</ion-label>
+  <ion-toggle slot="end" checked [(ngModel)]="isEdidt"></ion-toggle>
+</ion-item>
 
-
-<ion-content padding>
-  <ion-card *ngFor="let user of users | async">
+<ion-content>
+  <ion-card>
     <ion-card-header>
       Persöhnliche Informationen
     </ion-card-header>
     <ion-card-content>
-      {{user.name}}
+      <ion-label> Name: {{userData.name}}</ion-label>
     </ion-card-content>
     <ion-card-content>
-      {{user.email}}
+      Email-Adresse: {{userData.email}}
     </ion-card-content>
     <ion-card-content>
-      {{user.company}}
+      Company: {{userData.company}}
     </ion-card-content>
     <ion-card-content>
-      {{user.country}}
+      Land:{{userData.country}}
     </ion-card-content>
     <ion-card-content>
-      {{user.adress}}
+      Adresse: {{userData.adress}}
     </ion-card-content>
     <ion-card-content>
-      {{user.telephone}}
+      Telefon:{{userData.telephone}}
     </ion-card-content>
     <ion-card-content>
-      {{user.contactPerson}}
+      Kontakt Person: {{userData.contactPerson}}
     </ion-card-content>
     <ion-card-content>
-      {{user.artOfWorking}}
+      Art of Working: {{userData.artOfWorking}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-content>
+  <ion-card *ngFor=" let user of users | async">
+    <ion-card-header>
+      Persöhnliche Informationen
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label> Name: {{user.name}}</ion-label>
+    </ion-card-content>
+    <ion-card-content>
+      Email-Adresse: {{user.email}}
+    </ion-card-content>
+    <ion-card-content>
+      Company: {{user.company}}
+    </ion-card-content>
+    <ion-card-content>
+      Land:{{user.country}}
+    </ion-card-content>
+    <ion-card-content>
+      Adresse: {{user.adress}}
+    </ion-card-content>
+    <ion-card-content>
+      Telefon:{{user.telephone}}
+    </ion-card-content>
+    <ion-card-content>
+      Kontakt Person: {{user.contactPerson}}
+    </ion-card-content>
+    <ion-card-content>
+      Art of Working: {{user.artOfWorking}}
     </ion-card-content>
   </ion-card>
 </ion-content>
