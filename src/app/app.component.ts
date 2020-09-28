@@ -1,12 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { TranslateService } from '@ngx-translate/core';
 import { Platform } from '@ionic/angular';
 import { Plugins, Capacitor, AppState } from '@capacitor/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+import { Globalization } from '@ionic-native/globalization/ngx';
 import { AuthService } from './auth/auth.service';
+import { LanguageService } from './shared/language.service';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +18,15 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent implements OnInit, OnDestroy {
   private authSub: Subscription;
   private previousAuthState = false;
+  public language: string;
 
   constructor(
     private platform: Platform,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private _translate: TranslateService,
+    private globalization: Globalization,
+    private languageService: LanguageService
   ) {
     this.initializeApp();
   }
@@ -30,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
         Plugins.SplashScreen.hide();
       }
     });
+    this.getDeviceLanguage();
   }
 
   ngOnInit() {
@@ -66,6 +74,36 @@ export class AppComponent implements OnInit, OnDestroy {
             this.onLogout();
           }
         });
+    }
+  }
+  _initTranslate(language) {
+    // Set the default language for translation strings, and the current language.
+    this._translate.setDefaultLang('en');
+    if (language) {
+      this.languageService.language = language;
+      this.language = language;
+    }
+    else {
+      // Set your language here
+      this.language = 'en';
+      this.languageService.language = 'en';
+    }
+    this._translateLanguage();
+  }
+  _translateLanguage(): void {
+    this._translate.use(this.language);
+
+  }
+  getDeviceLanguage() {
+    if (window.Intl && typeof window.Intl === 'object') {
+      this._initTranslate(navigator.language)
+    }
+    else {
+      this.globalization.getPreferredLanguage()
+        .then(res => {
+          this._initTranslate(res.value)
+        })
+        .catch(e => { console.log(e); });
     }
   }
 }

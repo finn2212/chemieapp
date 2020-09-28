@@ -1,0 +1,11 @@
+{
+  "TITLE": "Hallo Herr",
+  "TITLE_2": "Hallo {{value}}",
+  "description": "Ohh habe ich gerade den Text Übersetzt? ?",
+  "data": {
+    "name": "Mein Name ist: {{name_value}}"
+  },
+  "SELECTLANGUAGE": "Sprache Auswählen",
+  "ENTERVALUES": "Werte Eingeben",
+  "CALCULATION": "Berechnung"
+}

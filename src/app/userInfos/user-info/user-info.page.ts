@@ -4,7 +4,7 @@ import { AuthService } from '../../auth/auth.service'
 import { Observable } from 'rxjs';
 import { RegisterCodeService } from '../../auth/register-code.service';
 import { UserData } from '../../models/userData'
-import { User } from 'src/app/auth/user.model';
+import CountriesData from '../../resources/countries/countries';
 
 
 @Component({
@@ -13,30 +13,24 @@ import { User } from 'src/app/auth/user.model';
   styleUrls: ['./user-info.page.scss'],
 })
 export class UserInfoPage implements OnInit {
-
-  constructor(private userService: UserService, private auth: AuthService, private registerCodeService: RegisterCodeService) { }
   users: Observable<any>;
   usersArray: any[] = [];
   isEdidt = true;
   userData: UserData;
-
-
-
-
-
-  ngOnInit() {
-    this.users = this.userService.getUserInformation().valueChanges();
-    this.users.subscribe(res => {
-      this.usersArray = res;
-    })
-    console.log(this.userData);
-
-    this.userData = this.userService.getUserData();
-    console.log(this.userData);
-
-
+  countries;
+  constructor(private userService: UserService, private auth: AuthService, private registerCodeService: RegisterCodeService) {
+    this.countries = new CountriesData().getcountriesData();
   }
 
 
+
+  async ngOnInit() {
+    // this.users = this.userService.getUserInformation().valueChanges();
+    // this.users.subscribe(res => {
+    //   this.usersArray = res;
+    // })
+    // this.userData = this.userService.getUserData();
+
+  }
 
 }

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CalculatePageRoutingModule } from './calculate-routing.module';
+import { SettingsPageRoutingModule } from './settings-routing.module';
 
-import { CalculatePage } from './calculate.page';
+import { SettingsPage } from './settings.page';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
@@ -16,12 +16,14 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CalculatePageRoutingModule,
+    SettingsPageRoutingModule,
+    IonicModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -30,6 +32,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
   ],
-  declarations: [CalculatePage]
+  declarations: [SettingsPage]
 })
-export class CalculatePageModule { }
+export class SettingsPageModule { }

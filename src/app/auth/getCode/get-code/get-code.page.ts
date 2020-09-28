@@ -43,7 +43,8 @@ export class GetCodePage implements OnInit {
     const name = form.value.name;
     const company = form.value.company;
     const country = form.value.country;
-    const adress = form.value.adress;
+    let adressString = form.value.adress1 + ' ' + form.value.adressCity + ' ' + form.value.adressState + ' ' + form.value.adressZipCode;
+    const adress = adressString;
     const telephone = form.value.telephone;
     const contactPerson = form.value.contactPerson;
     const artOfWorking = form.value.artOfWorking;

@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'get-code',
     loadChildren: () => import('./auth/getCode/get-code/get-code.module').then(m => m.GetCodePageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   }
 ];
 

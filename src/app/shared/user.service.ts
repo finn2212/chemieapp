@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
 import { UserData } from '../models/userData'
+import { async } from 'rxjs/internal/scheduler/async';
 
 
 @Injectable({
@@ -30,6 +31,9 @@ export class UserService {
     this.storeUserInfoLocal(userData);
     return data;
   }
+  async getUserInfoAsync() {
+    return await this.localDb.get('userdata');
+  }
 
   private storeUserInfoLocal(userData) {
     this.localDb.set('userdata', userData);
@@ -47,18 +51,10 @@ export class UserService {
   getUserInformation(): AngularFirestoreCollection<any> {
     return this.db.collection(this.getcurrentMail());
   }
-  private getUserInformationLocal() {
-    return this.localDb.get('userdata')
-  }
 
-  private getUserInfosFromLocalDB() {
-    this.getUserInformationLocal().then((result) => {
-      this.userData = result;
-    });
-  }
 
-  setcurrentMail(email: string) {
-    this.getUserInfosFromLocalDB()
+  async setcurrentMail(email: string) {
+    this.userData = await this.getUserInfoAsync();
     this.currentMail = email;
   }
 

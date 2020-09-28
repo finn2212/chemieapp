@@ -9,79 +9,90 @@
 
 <ion-content class="ion-padding">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+      <ion-item>
+        <ion-label position="stacked">E-Mail <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="string" ngModel name="email" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Name <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="string" ngModel name="name" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Company <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="string" ngModel name="company" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Country <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-select placeholder="Landauswählen" ngModel name="country" required>
+          <ion-select-option *ngFor="let country of countries">{{country.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Address <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input ngModel name="adress1" placeholder="Address Line 1" required></ion-input>
+        <ion-input ngModel name="adressCity" placeholder="City" required></ion-input>
+        <ion-input ngModel name="adressState" placeholder="State" required></ion-input>
+        <ion-input ngModel name="adressZipCode" placeholder="Zip Code" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Ansprechpartner <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="string" ngModel name="contactPerson" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Telefon <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="number" ngModel name="telephone" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Art der Maschinellen Umsetzung</ion-label>
+        <ion-select placeholder="Maschienen Auswahl" ngModel name="artOfWorking" required>
+          <ion-select-option>Art 1</ion-select-option>
+          <ion-select-option>Art 2</ion-select-option>
+          <ion-select-option>Art 3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+
     <ion-grid>
       <ion-row>
-        <ion-col size-sm="6" offset-sm="3">
-          <ion-list>
-            <ion-item>
-              <ion-label position="floating">E-Mail</ion-label>
-              <ion-input type="string" ngModel name="email" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Name</ion-label>
-              <ion-input type="string" ngModel name="name" required>
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Company</ion-label>
-              <ion-input type="string" ngModel name="company" required>
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Country</ion-label>
-              <ion-select placeholder="Landauswählen" ngModel name="country" required>
-                <ion-select-option *ngFor="let country of countries">{{country.name}}</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Adress</ion-label>
-              <ion-input type="string" ngModel name="adress" required>
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Telephone</ion-label>
-              <ion-input type="number" ngModel name="telephone" required>
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Ansprechpartner</ion-label>
-              <ion-input type="string" ngModel name="contactPerson" required>
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Art der Maschinellen Umsetzung</ion-label>
-              <ion-select placeholder="Maschienen Auswahl" ngModel name="artOfWorking" required>
-                <ion-select-option>Art 1</ion-select-option>
-                <ion-select-option>Art 2</ion-select-option>
-                <ion-select-option>Art 3</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-list>
-          <ion-row class="ion-padding-top">
-            <ion-col size="5">
-              <ion-label position="floating">Hiermit Akzeptiere ich die AGBs</ion-label>
-            </ion-col>
-            <ion-col size="2" class="ion-padding-top">
-              <ion-checkbox ngModel name="abgsCheck" [(ngModel)]="agbs" required></ion-checkbox>
-            </ion-col>
-            <ion-col size="3">
-              <ion-button (click)="presentModal()">Show AGBS</ion-button>
-            </ion-col>
-          </ion-row>
+        <ion-col size="2" padding class="ion-padding-top">
+          <ion-checkbox ngModel name="abgsCheck" [(ngModel)]="agbs" required></ion-checkbox>
+        </ion-col>
+        <ion-col>
+          <ion-text>
+            <p>I accept the <u (click)="presentModal()">Terms & Conditions</u></p>
+          </ion-text>
         </ion-col>
       </ion-row>
+
+
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
-          <ion-button type="submit" color="primary" expand="block" [disabled]="!f.valid">
-            GetCode
+          <ion-button type="submit" color="dark" expand="block" [disabled]="!f.valid">
+            Signup Anfrage stellen
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </form>
-
-  <!-- <div class="ion-text-center">
-    <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
-  </div> -->
-
 </ion-content>
