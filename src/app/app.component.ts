@@ -51,7 +51,9 @@ export class AppComponent implements OnInit, OnDestroy {
       'appStateChange',
       this.checkAuthOnResume.bind(this)
     );
+
   }
+
 
   onLogout() {
     this.authService.logout();

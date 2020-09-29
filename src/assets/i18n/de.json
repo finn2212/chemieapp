@@ -7,5 +7,11 @@
   },
   "SELECTLANGUAGE": "Sprache Auswählen",
   "ENTERVALUES": "Werte Eingeben",
-  "CALCULATION": "Berechnung"
+  "CALCULATION": "Berechnung",
+  "USERINFO": "Benuter Info",
+  "LOGOUT": "Ausloggen",
+  "SETTINGS": "Einstellungen",
+  "ENGLISH": "Englisch",
+  "GERMAN": "Deutsch",
+  "FRENCH": "Französich"
 }

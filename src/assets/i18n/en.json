@@ -7,5 +7,11 @@
   },
   "SELECTLANGUAGE": "Select Language",
   "ENTERVALUES": "Enter Values",
-  "CALCULATION": "Calculation"
+  "CALCULATION": "Calculation",
+  "USERINFO": "User Info",
+  "LOGOUT": "Logout",
+  "SETTINGS": "Settings",
+  "ENGLISH": "English",
+  "GERMAN": "German",
+  "FRENCH": "French"
 }

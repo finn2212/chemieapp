@@ -15,7 +15,7 @@ export class CalculatePage implements OnInit {
   constructor(private _translate: TranslateService) { }
 
   ngOnInit() {
-    this._initialiseTranslation();
+
   }
   ionViewWillEnter() {
     this._initialiseTranslation();

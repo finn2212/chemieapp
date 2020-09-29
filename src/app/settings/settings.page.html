@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Tab One
+      {{'SETTINGS'| translate}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,11 +12,11 @@
 <ion-content>
 
   <ion-item>
-    <ion-label>{{selectlanguage}}</ion-label>
+    <ion-label>{{'SELECTLANGUAGE' | translate}}</ion-label>
     <ion-select [(ngModel)]="language" [value]="language" (ionChange)="changeLanguage()">
-      <ion-select-option value="en">English</ion-select-option>
-      <ion-select-option value="de">German</ion-select-option>
-      <ion-select-option value="fr">French</ion-select-option>
+      <ion-select-option value="en">{{'ENGLISH' | translate}}</ion-select-option>
+      <ion-select-option value="de">{{'GERMAN'| translate}}</ion-select-option>
+      <ion-select-option value="fr">{{'FRENCH'| translate}}</ion-select-option>
     </ion-select>
   </ion-item>
 

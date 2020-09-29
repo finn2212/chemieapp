@@ -16,21 +16,21 @@ export class SettingsPage {
   ) { }
 
   ionViewDidEnter(): void {
-    this._initialiseTranslation();
+    //this._initialiseTranslation();
     this.language = this.languageSerive.language;
 
   }
-  _initialiseTranslation(): void {
-    this._translate.get('SELECTLANGUAGE').subscribe((res: string) => {
-      this.selectlanguage = res;
-    });
-  }
+  // _initialiseTranslation(): void {
+  //   this._translate.get('SELECTLANGUAGE').subscribe((res: string) => {
+  //     this.selectlanguage = res;
+  //   });
+  // }
 
   public changeLanguage(): void {
     this._translate.get
     this._translate.use(this.language);
     this.languageSerive.language = this.language
-    this._initialiseTranslation();
+    // this._initialiseTranslation();
   }
 
 }
