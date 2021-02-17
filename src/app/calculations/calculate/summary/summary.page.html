@@ -8,6 +8,49 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-title>summary here</ion-title>
-</ion-content>
+<ng-container *ngIf="!hasCalculated">
+  <ion-content>
+  <ion-list>
+    <ion-list-header>
+      Bitte Berechnung Dürchführen
+     </ion-list-header>
+    </ion-list>
+    </ion-content>
+
+ 
+
+</ng-container>
+
+<ng-container *ngIf="hasCalculated">
+  <ion-content>
+    <ion-list>
+      <ion-list-header>
+        Ergebnis aus der {{mode}}
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Wert 1</ion-label>
+        <ion-note slot="end" color="primary">{{value1}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Wert 2</ion-label>
+        <ion-note slot="end" color="primary">{{value2}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Wert 3</ion-label>
+        <ion-note slot="end" color="primary">{{value3}}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Wert 4</ion-label>
+        <ion-note slot="end" color="primary">{{value4}}</ion-note>
+      </ion-item>
+    </ion-list>
+    <ion-list-header>
+      Ergebnis
+    </ion-list-header>
+    <ion-item>
+      <ion-label>{{result}}</ion-label>
+    </ion-item>
+    </ion-content>
+
+</ng-container>
+

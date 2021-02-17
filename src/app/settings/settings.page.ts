@@ -11,9 +11,28 @@ import { LanguageService } from '../shared/language.service';
 export class SettingsPage {
 
   public language: string;
-  public selectlanguage: string
+  public selectlanguage: string;
+  public name;
+  public email;
+  public company;
+  public adress1;
+  public adressCity;
+  public adressState;
+  public adressZipCode;
+  public contactPerson;
+  public telnumber;
   constructor(private globalization: Globalization, private _translate: TranslateService, private languageSerive: LanguageService
-  ) { }
+  ) { 
+    this.name = "Peter Müller";
+    this.email = "peter.müller@web.de";
+    this.company = "Fsquared Media";
+    this.adress1 = "Immenkoppel 2"
+    this.adressCity = "Hamburg";
+    this.adressState = "Hamburg";
+    this.adressZipCode = "20099";
+    this.contactPerson = "Mathias";
+    this.telnumber = "0049123456789"
+  }
 
   ionViewDidEnter(): void {
     //this._initialiseTranslation();

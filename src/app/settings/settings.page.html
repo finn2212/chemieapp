@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
   <ion-item>
     <ion-label>{{'SELECTLANGUAGE' | translate}}</ion-label>
     <ion-select [(ngModel)]="language" [value]="language" (ionChange)="changeLanguage()">
@@ -20,5 +20,80 @@
     </ion-select>
   </ion-item>
 
+  <ion-item-divider></ion-item-divider>
+          <ion-item>
+              <ion-label position="stacked">Vor-und Nachname</ion-label>
+              <ion-input [(ngModel)]="name"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="stacked">E-Mail 
+            </ion-label>
+            <ion-input [(ngModel)]="email" ></ion-input>
+          </ion-item>
+    
+          
+    
+          <ion-item>
+            <ion-label position="stacked">Company 
+            </ion-label>
+            <ion-input  [(ngModel)]="company">
+            </ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="floating">Country 
+            </ion-label>
+            <ion-select placeholder="Landauswählen" ngModel name="country">
+              <ion-select-option *ngFor="let country of countries">{{country.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item-divider></ion-item-divider>
+          <ion-item>
+            <ion-label position="stacked">Address 
+            </ion-label>
+            <ion-input [(ngModel)]="adress1" placeholder="Address Line 1" ></ion-input>
+            <ion-input [(ngModel)]="adressCity"  placeholder="City" ></ion-input>
+            <ion-input [(ngModel)]="adressState"  placeholder="State" ></ion-input>
+            <ion-input [(ngModel)]="adressZipCode"  placeholder="Zip Code" type="number" ></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="stacked">Ansprechpartner 
+            </ion-label>
+            <ion-input type="string" [(ngModel)]="contactPerson" >
+            </ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="stacked">Telefon 
+            </ion-label>
+            <ion-input type="number" [(ngModel)]="telnumber" >
+            </ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="floating">Art der Maschinellen Umsetzung</ion-label>
+            <ion-select placeholder="Maschienen Auswahl" ngModel name="artOfWorking" >
+              <ion-select-option>Art 1</ion-select-option>
+              <ion-select-option>Art 2</ion-select-option>
+              <ion-select-option>Art 3</ion-select-option>
+            </ion-select>
+          </ion-item>
 
+          <ion-item>
+            <ion-label position="stacked">Weitere Stammdaten 1 
+            </ion-label>
+            <ion-input >
+            </ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label position="stacked">Weitere Stammdaten 2 
+            </ion-label>
+            <ion-input  >
+            </ion-input>
+          </ion-item>
+    
+  </ion-list>
 </ion-content>

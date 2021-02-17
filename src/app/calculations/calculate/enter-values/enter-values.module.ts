@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { EnterValuesPageRoutingModule } from './enter-values-routing.module';
 
 import { EnterValuesPage } from './enter-values.page';
+import { ComponentsModule } from 'src/app/shared/components.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EnterValuesPageRoutingModule
+    EnterValuesPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [EnterValuesPage]
 })

@@ -15,7 +15,8 @@ export const environment = {
     messagingSenderId: "280259881946",
     appId: "1:280259881946:web:160bb7c6eaeca9052feee3",
     measurementId: "G-35JYM5DFFN"
-  }
+  },
+  apiKeyOpenWeather: "46d924b718b1433dbb4e3ec15973d101"
 
 };
 

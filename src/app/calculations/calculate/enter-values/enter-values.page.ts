@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CalcService } from '../../calc.service';
 
 @Component({
   selector: 'app-enter-values',
@@ -8,10 +9,14 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class EnterValuesPage implements OnInit {
   public enterValues: string;
+  public state: string;
 
-  constructor(private _translate: TranslateService) { }
+  constructor(private _translate: TranslateService,private calcService: CalcService) { 
+    this.state = "calc1"
+  }
 
   ngOnInit() {
+
   }
   ionViewWillEnter() {
     this._initialiseTranslation();
@@ -26,6 +31,12 @@ export class EnterValuesPage implements OnInit {
     });
 
 
+  }
+  segmentChanged(ev: any) {
+    console.log(ev.detail.value);
+
+    this.state = ev.detail.value;
+    this.calcService.mode = ev.detail.value
   }
 
 
