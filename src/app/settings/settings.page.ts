@@ -30,7 +30,7 @@ export class SettingsPage {
     this.adressCity = "Hamburg";
     this.adressState = "Hamburg";
     this.adressZipCode = "20099";
-    this.contactPerson = "Mathias";
+    this.contactPerson = "Matthias";
     this.telnumber = "0049123456789"
   }
 

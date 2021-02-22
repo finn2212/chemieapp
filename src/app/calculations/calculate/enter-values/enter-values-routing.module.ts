@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: EnterValuesPage
+  },
+  {
+    path: 'information-modal',
+    loadChildren: () => import('./information-modal/information-modal.module').then( m => m.InformationModalPageModule)
   }
 ];
 

@@ -13,3 +13,9 @@
 .ion-invalid.ion-touched ion-label {
     color: var(--ion-color-danger);
 }
+
+.information-modal {
+    --height: 80%;
+    --border-radius: 10px;
+    padding: 25px;
+  }
