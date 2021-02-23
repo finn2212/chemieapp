@@ -5,7 +5,10 @@ import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'calculate', pathMatch: 'full' },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule) },
+  { 
+    path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule),
+    canActivate: [AuthGuard]
+  },
   {
     path: 'user-info',
     loadChildren: () => import('./userInfos/user-info/user-info.module').then(m => m.UserInfoPageModule),

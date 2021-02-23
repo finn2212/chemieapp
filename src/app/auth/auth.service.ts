@@ -168,6 +168,10 @@ export class AuthService implements OnDestroy {
       userData.email
     );
   }
+  getIfloggedIn(): User{
+  return this._user.getValue();
+  }
+ 
 
   private storeAuthData(
     userId: string,
