@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
 
 import { GetCodePageRoutingModule } from './get-code-routing.module';
@@ -13,7 +15,8 @@ import { GetCodePage } from './get-code.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    GetCodePageRoutingModule
+    GetCodePageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [GetCodePage]
 })

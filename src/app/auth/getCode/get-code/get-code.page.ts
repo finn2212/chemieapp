@@ -7,7 +7,13 @@ import { ModalController, AlertController } from '@ionic/angular';
 import { AgbsComponent } from '../agbs/agbs.component';
 import CountriesData from '../../../resources/countries/countries';
 
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
+interface StudentData {
+  Name: string;
+  Age: number;
+  Address: string;
+}
 
 
 
@@ -16,21 +22,60 @@ import CountriesData from '../../../resources/countries/countries';
   templateUrl: './get-code.page.html',
   styleUrls: ['./get-code.page.scss'],
 })
+
 export class GetCodePage implements OnInit {
+
+
+  studentList = [];
+  studentData: StudentData;
+  studentForm: FormGroup;
 
   constructor(
     private router: Router,
     private registerCodeService: RegisterCodeService,
     private userService: UserService,
     private modalController: ModalController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public fb: FormBuilder
   ) {
     this.countries = new CountriesData().getcountriesData();
   }
   ngOnInit() {
+    this.studentForm = this.fb.group({
+      Name: ['', [Validators.required]],
+      Age: ['', [Validators.required]],
+      Address: ['', [Validators.required]],
+      Email: ['', [Validators.required]],
+      Company: ['', [Validators.required]],
+      Country: ['', [Validators.required]],
+      Partner: ['', [Validators.required]],
+      Telefon: ['', [Validators.required]],
+      maschine: ['', [Validators.required]],
+      agb: ['', [Validators.required]]
+      
+    })
   }
+
+
+  CreateRecord() {
+    console.log(this.studentForm.value);
+    this.userService.create_user(this.studentForm.value).then(resp => {
+      this.studentForm.reset();
+    })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
   agbs: boolean;
   countries;
+
+
+
+
+
+  
 
   onSubmit(form: NgForm) {
     if (!this.agbs) {

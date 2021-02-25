@@ -7,22 +7,15 @@
     <ion-title>summary</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ng-container *ngIf="!hasCalculated">
-  <ion-content>
-  <ion-list>
-    <ion-list-header>
-      Bitte Berechnung Dürchführen
-     </ion-list-header>
+<ion-content>
+  <ng-container *ngIf="!hasCalculated">
+    <ion-list>
+      <ion-list-header>
+        Bitte Berechnung Dürchführen
+      </ion-list-header>
     </ion-list>
-    </ion-content>
-
- 
-
-</ng-container>
-
-<ng-container *ngIf="hasCalculated">
-  <ion-content>
+  </ng-container>
+  <ng-container *ngIf="hasCalculated">
     <ion-list>
       <ion-list-header>
         Ergebnis aus der {{mode}}
@@ -43,20 +36,24 @@
         <ion-label>Wert 4</ion-label>
         <ion-note slot="end" color="primary">{{value4}}</ion-note>
       </ion-item>
+      <ion-list-header>
+        Ergebnis
+      </ion-list-header>
+      <ion-item>
+        <ion-label>{{result}}</ion-label>
+      </ion-item>
     </ion-list>
-    <ion-list-header>
-      Ergebnis
-    </ion-list-header>
-    <ion-item>
-      <ion-label>{{result}}</ion-label>
-    </ion-item>
-    </ion-content>
-
-    <ion-text class="ion-padding">
-      <h1>The quick brown fox jumps over the lazy dog</h1>
-      <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      </p>
-    </ion-text>
-
-</ng-container>
-
+    <div class="ion-padding-start ion-padding-end">
+      <ion-text >
+        <h1>The quick brown fox jumps over the lazy dog</h1>
+        <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+          clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+          diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+          takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+      </ion-text>
+    </div>
+  </ng-container>
+</ion-content>
