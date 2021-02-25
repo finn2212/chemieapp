@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterCodeService } from '../../register-code.service';
 import { UserService } from '../../../shared/user.service';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, LoadingController } from '@ionic/angular';
 import { AgbsComponent } from '../agbs/agbs.component';
 import CountriesData from '../../../resources/countries/countries';
 
@@ -29,6 +29,9 @@ export class GetCodePage implements OnInit {
   studentList = [];
   studentData: StudentData;
   studentForm: FormGroup;
+  agbs: boolean;
+  countries;
+  isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -36,7 +39,8 @@ export class GetCodePage implements OnInit {
     private userService: UserService,
     private modalController: ModalController,
     private alertCtrl: AlertController,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public loadingController: LoadingController
   ) {
     this.countries = new CountriesData().getcountriesData();
   }
@@ -59,17 +63,39 @@ export class GetCodePage implements OnInit {
 
   CreateRecord() {
     console.log(this.studentForm.value);
+    this.presentLoading();
+    this.isLoading = true;
+    const data = this.userService.createUserInfo(this.studentForm.value.Email, this.studentForm.value.Name, this.studentForm.value.Company, this.studentForm.value.Country, this.studentForm.value.Adress, this.studentForm.value.Telefon, this.studentForm.value.Partner, this.studentForm.value.maschine);
+    this.registerCodeService.createDataMail(data);
     this.userService.create_user(this.studentForm.value).then(resp => {
       this.studentForm.reset();
+      this.router.navigateByUrl('/auth')
+      this.dismiss();
     })
       .catch(error => {
         console.log(error);
       });
   }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      
+    }).then(a => {
+      a.present().then(() => {
+        console.log('presented');
+        if (!this.isLoading) {
+          a.dismiss().then(() => console.log('abort presenting'));
+        }
+      });
+  })
+}
 
+async dismiss() {
+  this.isLoading = false;
+  return await this.loadingController.dismiss().then(() => console.log('dismissed'));
+}
 
-  agbs: boolean;
-  countries;
 
 
 

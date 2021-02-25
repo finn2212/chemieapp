@@ -36,8 +36,8 @@ export class UserService {
       artOfWorking: artOfWorking
     }
     let userData = new UserData(email, name, company, country, adress, telephone, contactPerson, artOfWorking);
-    this.storeUserInfo(data);
-    this.storeUserInfoLocal(userData);
+    //this.storeUserInfo(data);
+   // this.storeUserInfoLocal(userData);
     return data;
   }
   async getUserInfoAsync() {
