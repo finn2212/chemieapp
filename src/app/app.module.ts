@@ -31,6 +31,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Globalization } from '@ionic-native/globalization/ngx';
 
+import { AppVersion } from '@ionic-native/app-version/ngx';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -65,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     StatusBar,
+    AppVersion,
     SplashScreen,
     Globalization,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
