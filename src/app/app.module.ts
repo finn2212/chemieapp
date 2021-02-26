@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppVersion } from '@ionic-native/app-version/ngx';
 
 //  firebase imports, remove what you don't require
 import { AngularFireModule } from '@angular/fire';
@@ -66,7 +65,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     StatusBar,
-    AppVersion,
     SplashScreen,
     Globalization,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

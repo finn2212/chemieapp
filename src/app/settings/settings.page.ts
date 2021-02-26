@@ -4,6 +4,7 @@ import { LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../shared/language.service';
 import { UserService } from '../shared/user.service';
+//import { AppVersion } from '@ionic-native/app-version/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -15,6 +16,7 @@ export class SettingsPage {
   public language: string;
   public selectlanguage: string;
   isLoading: boolean;
+  version;
 
 
   studentList = [];
@@ -23,9 +25,17 @@ export class SettingsPage {
     private userService: UserService,
     private _translate: TranslateService,
     private languageSerive: LanguageService,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    //private appVersion: AppVersion
   ) {
-
+    // console.log(this.appVersion.getVersionNumber());
+    // this.appVersion.getVersionNumber().then(
+    //   (versionNumber) => {
+    //     this.version = versionNumber;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   });
     this.initList();
   }
 
@@ -67,7 +77,7 @@ export class SettingsPage {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Please wait...',
-      
+
     }).then(a => {
       a.present().then(() => {
         console.log('presented');
@@ -75,51 +85,51 @@ export class SettingsPage {
           a.dismiss().then(() => console.log('abort presenting'));
         }
       });
-  })
-}
+    })
+  }
 
-async dismiss() {
-  this.isLoading = false;
-  return await this.loadingController.dismiss().then(() => console.log('dismissed'));
-}
+  async dismiss() {
+    this.isLoading = false;
+    return await this.loadingController.dismiss().then(() => console.log('dismissed'));
+  }
 
-EditRecord(record) {
-  record.isEdit = true;
-  record.EditName = record.Name;
-  record.EditAge = record.Age;
-  record.EditAddress = record.Address;
-  record.EditEmail = record.Email;
-  record.EditCompany = record.Company
-  record.EditCountry = record.Country;
-  record.EditPartner = record.Partner;
-  record.EditTelefon = record.Telefon;
-  record.Editmaschine = record.maschine;
-}
+  EditRecord(record) {
+    record.isEdit = true;
+    record.EditName = record.Name;
+    record.EditAge = record.Age;
+    record.EditAddress = record.Address;
+    record.EditEmail = record.Email;
+    record.EditCompany = record.Company
+    record.EditCountry = record.Country;
+    record.EditPartner = record.Partner;
+    record.EditTelefon = record.Telefon;
+    record.Editmaschine = record.maschine;
+  }
 
-UpdateRecord(recordRow) {
-  let record = {};
-  record['Name'] = recordRow.EditName;
-  record['Age'] = recordRow.EditAge;
-  record['Email'] = recordRow.EditEmail;
-  record['Address'] = recordRow.EditAddress;
-  record['Company'] = recordRow.EditCompany;
-  record['Country'] = recordRow.EditCountry;
-  record['Partner'] = recordRow.EditPartner;
-  record['Telefon'] = recordRow.EditTelefon;
-  record['maschine'] = recordRow.Editmaschine;
+  UpdateRecord(recordRow) {
+    let record = {};
+    record['Name'] = recordRow.EditName;
+    record['Age'] = recordRow.EditAge;
+    record['Email'] = recordRow.EditEmail;
+    record['Address'] = recordRow.EditAddress;
+    record['Company'] = recordRow.EditCompany;
+    record['Country'] = recordRow.EditCountry;
+    record['Partner'] = recordRow.EditPartner;
+    record['Telefon'] = recordRow.EditTelefon;
+    record['maschine'] = recordRow.Editmaschine;
 
-  this.userService.update_user(recordRow.id, record);
-  recordRow.isEdit = false;
-}
+    this.userService.update_user(recordRow.id, record);
+    recordRow.isEdit = false;
+  }
 
-RemoveRecord(rowID) {
-  this.userService.delete_user(rowID);
-}
+  RemoveRecord(rowID) {
+    this.userService.delete_user(rowID);
+  }
   public changeLanguage(): void {
-  this._translate.get
+    this._translate.get
     this._translate.use(this.language);
-  this.languageSerive.language = this.language
+    this.languageSerive.language = this.language
 
-}
+  }
 
 }

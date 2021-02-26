@@ -19,6 +19,9 @@
         <ion-select-option value="fr">{{'FRENCH'| translate}}</ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-item>
+      <ion-label>Versionsnummer: {{version}}</ion-label>
+    </ion-item>
     <div *ngFor="let item of studentList">
       <span *ngIf="!item.isEdit; else elseBlock">
         <ion-item>
