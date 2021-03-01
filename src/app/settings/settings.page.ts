@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Globalization } from '@ionic-native/globalization/ngx';
 import { LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 import { LanguageService } from '../shared/language.service';
 import { UserService } from '../shared/user.service';
-import { AppVersion } from '@ionic-native/app-version/ngx';
+
 
 @Component({
   selector: 'app-tab1',
@@ -26,17 +27,10 @@ export class SettingsPage {
     private _translate: TranslateService,
     private languageSerive: LanguageService,
     public loadingController: LoadingController,
-    private appVersion: AppVersion
+   
   ) {
-    console.log(this.appVersion.getVersionNumber());
-    this.appVersion.getVersionNumber().then(
-      (versionNumber) => {
-        this.version = versionNumber;
-      },
-      (error) => {
-        console.log(error);
-      });
-    this.initList();
+   this.version = environment.version;
+  this.initList();
   }
 
 
